@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact - Flask Day 1</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <h1>Contact Page</h1>
+    <p>Email me at: siddik@example.com</p>
+    <nav>
+        <a href="home">Home</a>  
+    </nav>
+    <br>
+
+    <form action="{{url_for('submit')}}" method="post">
+
+        <input type="text" name = "name" placeholder="your name" >
+        <br><br>
+        <input type="email" name="email" id="">
+        <br><br>
+        <textarea name="messages"  placeholder="type your message here" id=""></textarea>
+        <br><br>
+        <button type="submit">submit</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul>
+        {% for category,msg in messages %}
+        <div class = "flash-{{category}}" style="margin-left: 520px;">
+             <li>{{ msg }}</li>
+        </div>
+        {% endfor %}
+    </ul>
+    
+    {% endif %}
+    {% endwith %}
+</body>
+</html>
